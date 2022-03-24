@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,4 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 });
 
 Route::apiResource('categories', CategoryController::class);
+Route::apiResource('posts', PostController::class);
