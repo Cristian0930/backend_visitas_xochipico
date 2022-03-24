@@ -38,13 +38,25 @@ class CategoryController extends Controller
         return $category;
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $category): \Illuminate\Http\JsonResponse
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255'
+        ]);
 
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $category->update($request->all());
+
+        return response()->json($category);
     }
 
-    public function destroy(Category $category)
+    public function destroy(Category $category): \Illuminate\Http\JsonResponse
     {
+        $category->delete();
 
+        return response()->json(null, 204);
     }
 }
