@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\Ionic\VisitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,10 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
 Route::apiResource('categories', CategoryController::class);
 Route::apiResource('posts', PostController::class);
+
+Route::get('visits', [VisitController::class, 'index']);
+Route::post('visits', [VisitController::class, 'store']);
+Route::get('visits/{id}', [VisitController::class, 'show']);
+Route::put('visits/{id}', [VisitController::class, 'update']);
+Route::delete('visits/{id}', [VisitController::class, 'destroy']);
+
