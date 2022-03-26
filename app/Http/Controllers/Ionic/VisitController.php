@@ -26,6 +26,7 @@ class VisitController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
+            'hour' => 'required|string',
             'date' => 'required|string',
             'persons' => 'required|numeric'
         ]);
@@ -39,6 +40,7 @@ class VisitController extends Controller
         $visit = new Visit([
             'name' => $request->name,
             'date' => $request->date,
+            'hour' => $request->hour,
             'persons' => $request->persons,
             'user_id' => $user->id
         ]);
@@ -68,6 +70,7 @@ class VisitController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'date' => 'required|string',
+                'hour' => 'required|string',
                 'persons' => 'required|numeric'
             ]);
 
@@ -80,6 +83,7 @@ class VisitController extends Controller
             $visit->update([
                 'name' => $request->name,
                 'date' => $request->date,
+                'hour' => $request->hour,
                 'persons' => $request->persons,
                 'user_id' => $user->id
             ]);

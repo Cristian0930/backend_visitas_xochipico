@@ -35,3 +35,5 @@ Route::get('visits/{id}', [VisitController::class, 'show']);
 Route::put('visits/{id}', [VisitController::class, 'update']);
 Route::delete('visits/{id}', [VisitController::class, 'destroy']);
 
+Route::get('filter/{id}', [PostController::class, 'postsByCategory']);
+

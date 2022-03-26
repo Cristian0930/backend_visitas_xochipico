@@ -10,8 +10,8 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('jwt.verify')->except('index', 'show');
-        $this->middleware('admin')->except('index', 'show');
+        $this->middleware('jwt.verify')->except('index', 'show', 'postsByCategory');
+        $this->middleware('admin')->except('index', 'show', 'postsByCategory');
     }
 
     public function index(): \Illuminate\Database\Eloquent\Collection
@@ -64,5 +64,12 @@ class PostController extends Controller
         $post->delete();
 
         return response()->json(null, 204);
+    }
+
+    public function postsByCategory($id): \Illuminate\Http\JsonResponse
+    {
+        $posts = Post::where('category_id', $id)->get()->load('category');
+        return response()->json($posts);
+
     }
 }

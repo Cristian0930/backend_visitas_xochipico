@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->date('date');
+            $table->time('hour');
             $table->unsignedInteger('persons');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
