@@ -50,9 +50,18 @@ class VisitController extends Controller
         return response()->json($visit, 201);
     }
 
-    public function show(Visit $visit): Visit
+    public function show($id)
     {
-        return $visit;
+        $visit = Visit::find($id);
+
+        if (is_null($visit)) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'record not found'
+            ], 404);
+        }
+
+        return response()->json($visit);
     }
 
     public function update($id, Request $request): \Illuminate\Http\JsonResponse
